@@ -19,13 +19,13 @@
     console.log('start');
     // 순서 2 - text함수 호출 (js(callstack)이 실행)
     // 순서 3 - setTimeout 구문을 외주 맡기고 다음 코드 바로 실행 (js(callstack))
-    // 순서 7 - setTimeout 수행하고 그 안쪽의 test1 콘솔문을 callstack에 전달 (이때 이미 callstack에는 콘솔 end까지 업무가 등록된 상태이기 때문에 그 다음에 호출 대기)
+    // 순서 7 - setTimeout 수행하고 그 안쪽의 test1 콘솔문을 callstack에 전달 (이때 이미 callstack에는 콘솔 end까지 업무가 등록된 상태이기 때문에 그 다음에 호출 대기) (web api)
     test(2000, () => {
       console.log('test1')
     })
     // 순서 4 - 두 번째 test 함수 호출 (js(callstack))
     // 순서 5 - setTimeout 구문을 외주 맡기고 다음 코드 바로 실행 (js(callstack))
-    // 순서 8 - setTimeout 수행하고 그 안쪽의 test1 콘솔문을 callstack에 전달 (이때 이미 callstack에는 콘솔 test1까지 업무가 등록된 상태이기 때문에 그 다음에 호출 대기)
+    // 순서 8 - setTimeout 수행하고 그 안쪽의 test1 콘솔문을 callstack에 전달 (이때 이미 callstack에는 콘솔 test1까지 업무가 등록된 상태이기 때문에 그 다음에 호출 대기) (web api)
     test(2000, () => {
       console.log('test2')
     })
