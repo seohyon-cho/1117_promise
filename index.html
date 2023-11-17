@@ -24,7 +24,10 @@
     fetch('./img/member.json') // 데이터 요청 후 동기적으로 반환 
       .then(data => data.json()) // 반환된 데이터를 다시 json()으로 parsing해서 다시 동기적으로 반환 
       .catch(err => console.log(err)) // 데이터 반환이 실패하면 해당 구문 호출되고 종료 
-      .then(json => console.log(json)); // 1번째 then 구문에서 json parsing이 성공하면 동기적으로 호출 
+      .then(json => {
+        console.log(json.members);
+        json.members.forEach(data => console.log(data.name));
+      }); // 1번째 then 구문에서 json parsing이 성공하면 동기적으로 호출 
   </script>
 
 </body>
