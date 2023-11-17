@@ -17,6 +17,7 @@
     }
 
     // 수행할 미션 - start, 2초 뒤에 test1 콘솔, 다시 2초 뒤에 test2 콘솔 찍히고, 마지막으로 end 출력
+    // 애초에 동기화시키고 싶은 코드를 모두 callback 형태로 묶어 통째로 web api에게 넘김으로써 callstack 입장에서 다음에 실행할 코드들을 원천적으로 제거하는 방법 
 
     // 순서 1 - start 출력 (callstack)
     console.log('start');
