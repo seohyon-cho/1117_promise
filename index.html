@@ -14,23 +14,29 @@
   <script>
     const main = document.querySelector('main');
 
-    fetch('./img/member.json') // 데이터 요청 후 동기적으로 반환 
-      .then(data => data.json()) // 반환된 데이터를 다시 json()으로 parsing해서 다시 동기적으로 반환 
-      .catch(err => console.log(err)) // 데이터 반환이 실패하면 해당 구문 호출되고 종료 
+    fetch('./img/member.json')
+      .then(data => data.json())
+      .catch(err => console.log(err))
       .then(json => {
         console.log(json.members);
-        let tags = '';
-        json.members.forEach((data) => {
-          tags += `
+        // 동적 DOM
+        createDOM(json.members);
+
+      });
+
+    function createDOM(arr) {
+      let tags = '';
+      arr.forEach((data) => {
+        tags += `
             <article>
               <div class="pic"><img src=${data.pic} /></div>
               <h2>${data.name}</h2>
               <p>${data.position}</p>
             </article>
           `
-        });
-        main.innerHTML = tags;
-      }); // 1번째 then 구문에서 json parsing이 성공하면 동기적으로 호출 
+      });
+      main.innerHTML = tags;
+    }
   </script>
 
 </body>
