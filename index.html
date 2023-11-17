@@ -7,26 +7,29 @@
   <title>Document</title>
 </head>
 
+
 <body>
+  <main></main>
 
   <script>
-    /*
-      json : 데이터 전달을 목적으로, 특정 언어에 종속되지 않는 문자열 형태의 자바스크립트 자료 구조 (javascript object notation 의 약자)
-        // 전부 쌍따옴표를 써서 문자열 형태로 써야 함. 
-    */
-    /* fetch() : 실시간으로 외부데이터를 가져오는 ES6 내장함수
-      fetch 자체가, 반환된 데이터를 promise로 감싸서 return해줌. 
-      : 결국 사용자가 promise 생성을 할 필요가 없음
-      : 외부 데이터를 가져와야 되기 때문에 시간이 걸리는 메서드고, promise를 적용할 수밖에 없는 메서드이기 때문에 아예 기본적으로 promise 기능을 내장하고 있음. 
-      : 그러므로 뒤에 바로 .then 을 쓸 수가 있음. 
-    */
+    const main = document.querySelector('main');
 
     fetch('./img/member.json') // 데이터 요청 후 동기적으로 반환 
       .then(data => data.json()) // 반환된 데이터를 다시 json()으로 parsing해서 다시 동기적으로 반환 
       .catch(err => console.log(err)) // 데이터 반환이 실패하면 해당 구문 호출되고 종료 
       .then(json => {
         console.log(json.members);
-        json.members.forEach(data => console.log(data.name));
+        let tags = '';
+        json.members.forEach((data) => {
+          tags += `
+            <article>
+              <div class="pic"><img src=${data.pic} /></div>
+              <h2>${data.name}</h2>
+              <p>${data.position}</p>
+            </article>
+          `
+        });
+        main.innerHTML = tags;
       }); // 1번째 then 구문에서 json parsing이 성공하면 동기적으로 호출 
   </script>
 
